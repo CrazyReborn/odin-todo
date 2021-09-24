@@ -1,5 +1,4 @@
 const projectList = [];
-
 const Project = (title, description, dueDate, priority) => {
     function add(){
         projectList.push(this);
@@ -11,7 +10,7 @@ const Project = (title, description, dueDate, priority) => {
     return { title, description, dueDate, priority, add, remove };
 };
 
-const defaulProject = Project('aaaa', 'bbbb', 'cccc', 'ddddd');
-defaulProject.add();
+const defaultProject = Project('Default', 'Defaul description', '11.11.2222', 4);
+defaultProject.add();
 
-export {Project, projectList};
+export { Project, projectList, defaultProject }

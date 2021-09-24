@@ -7,27 +7,36 @@
             #project-container {
                 border: 1px solid black;
             }
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+            #radio {
+                flex-direction: row;
+            }
         </style>
     </head>
     <body>
         <form>
             <label for='project-title'>Project Title</label>
-            <input type='text' name='project-title'>
+            <input id='project-title-value' type='text' name='project-title'>
             <label for='project-description'>Project Description</label>
-            <input type='text' name='project-description'>
+            <input id='project-discription-value' type='text' name='project-description'>
             <label for='project-due-date'>Project Due Date</label>
-            <input type='text' name='project-due-date'>
-            <p>Project Priority</p>
+            <input id='project-due-date-value' type='text' name='project-due-date'>
+            <div id='radio'>Project Priority
             <input type='radio' name='project-priority' id='low-priority' value='1'>
             <label for='low-priority'>Low</label>
             <input type='radio' name='project-priority' id='medium-priority' value='2'>
             <label for='medium-priority'>Medium</label>
             <input type='radio' name='project-priority' id='high-priority' value='3'>
             <label for='high-priority'>High</label>
+        </div>
+            <submit id='submit-project'>Submit</submit>
+        
         </form>
         <div id='main-container'>
             <div id='project-container'>
-                <button id='create-project'>Create Project</button>
             </div>
         </div>
         <script src='./main.js' defer></script>
