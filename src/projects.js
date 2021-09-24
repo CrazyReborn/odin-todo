@@ -11,4 +11,7 @@ const Project = (title, description, dueDate, priority) => {
     return { title, description, dueDate, priority, add, remove };
 };
 
+const defaulProject = Project('aaaa', 'bbbb', 'cccc', 'ddddd');
+defaulProject.add();
+
 export {Project, projectList};
