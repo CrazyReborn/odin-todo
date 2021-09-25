@@ -1,7 +1,15 @@
+import { updateProjectListDom } from "./dom-manipulator";
+import { projectList } from "./projects";
 
 function deleteProjectDom() {
-    document.querySelector('.delete-button').addEventListeners('click', e=> {
-        projectList[e.target.parentElement.getAttribute('project-id')].remove();
-        updateProjectListDom;
+    const allDeleteButtons = document.querySelectorAll('.delete-button');
+    allDeleteButtons.forEach(button => {
+        button.addEventListener('click', e=> {
+            projectList[e.target.parentElement.getAttribute('project-id')].remove();
+            updateProjectListDom();
+        })
     })
 }
+    
+
+export {deleteProjectDom};

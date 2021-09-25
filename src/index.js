@@ -1,6 +1,7 @@
 import { Project, projectList, defPro } from './projects';
-import { updateProjectListDom } from './dom-manipulator';
-//import { deleteProjectDom} from './delete-project-dom';
+import { updateProjectListDom, createProjectDom } from './dom-manipulator';
 
-updateProjectListDom();
-deleteProjectDom();
+const run = (() => {
+    updateProjectListDom();
+    createProjectDom();
+})();
