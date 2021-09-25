@@ -12,7 +12,6 @@ function createProjectDom() {             //this works for the form; should be r
         newProjectDeleteButton.addEventListener('click', e => {
             projectList.splice(e.target.parentElement.getAttribute('project-id'), 1);
             console.log(projectList);
-            e.target.parentElement.innerHTML = '';
             e.target.parentElement.remove();
         })
         newProjectDeleteButton.textContent = 'Delete This Project';
