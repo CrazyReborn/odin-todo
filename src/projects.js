@@ -10,4 +10,7 @@ const Project = (title, description, dueDate, priority) => {
     return { title, description, dueDate, priority, add, remove };
 };
 
-export { Project, projectList }
+const defPro = Project('aaaa', 'bbbbb', 'ccccc', '3');
+defPro.add();
+
+export { Project, projectList, defPro }
