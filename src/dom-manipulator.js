@@ -1,12 +1,21 @@
-import { Project, projectList, defaultProject } from './projects';
+import { Project, projectList } from './projects';
 
-function createProjectDom() {
+function createProjectDom() {             //this works for the form; should be remade into a popup form. Also don't forget to remove event listener;
         document.querySelector('#submit-project').addEventListener('click', e=> {
         const newProjectDiv = document.createElement('div');
         const newProjectTitle = document.createElement('p');
         const newProjectDesc = document.createElement('p');
         const newProjectDueDate = document.createElement('p');
         const newProjectPriority = document.createElement('p');
+        const newProjectDeleteButton = document.createElement('button');
+        newProjectDeleteButton.classList.add('delete-project');
+        newProjectDeleteButton.addEventListener('click', e => {
+            projectList.splice(e.target.parentElement.getAttribute('project-id'), 1);
+            console.log(projectList);
+            e.target.parentElement.innerHTML = '';
+            e.target.parentElement.remove();
+        })
+        newProjectDeleteButton.textContent = 'Delete This Project';
 
         const newProject = Project(document.querySelector('#project-title-value').value, 
                                    document.querySelector('#project-discription-value').value, 
@@ -21,7 +30,7 @@ function createProjectDom() {
         newProjectDueDate.textContent = newProject.dueDate;
         newProjectPriority.textContent = newProject.priority;
 
-        newProjectDiv.append(newProjectTitle, newProjectDesc, newProjectDueDate, newProjectPriority);
+        newProjectDiv.append(newProjectTitle, newProjectDesc, newProjectDueDate, newProjectPriority, newProjectDeleteButton);
         document.querySelector('#project-container').appendChild(newProjectDiv);
         e.preventDefault();
     })

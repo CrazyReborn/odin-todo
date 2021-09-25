@@ -1,4 +1,4 @@
-import { Project, projectList, defaultProject } from './projects';
-import { createProjectDom } from './dom-manipulator';
+import { Project, projectList } from './projects';
+import { createProjectDom, deleteProjectDom } from './dom-manipulator';
 
 createProjectDom();

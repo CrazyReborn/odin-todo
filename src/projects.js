@@ -10,7 +10,4 @@ const Project = (title, description, dueDate, priority) => {
     return { title, description, dueDate, priority, add, remove };
 };
 
-const defaultProject = Project('Default', 'Defaul description', '11.11.2222', 4);
-defaultProject.add();
-
-export { Project, projectList, defaultProject }
+export { Project, projectList }
