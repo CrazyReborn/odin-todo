@@ -12,7 +12,7 @@ const ProjectManager = (() => {
         addProject,
         removeProject,
     };
-})();
+});
 
 const Project = (title, description, dueDate, priority) => {
     const taskList = [];

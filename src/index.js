@@ -1,6 +1,5 @@
 import { ProjectManager, Project, Task } from './projects';
-import { updateProjectListDom, createProjectDom } from './dom-manipulator';
-import { deleteProjectDom } from './delete-project-dom';
+import { updateProjectListDom, createProjectDom, deleteProjectDom } from './dom-manipulator';
 
 const run = (() => {
     updateProjectListDom();

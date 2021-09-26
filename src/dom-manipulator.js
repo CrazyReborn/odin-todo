@@ -1,5 +1,4 @@
 import { ProjectManager, Project, Task } from './projects';
-import { deleteProjectDom } from './delete-project-dom';
 
 
 function updateProjectListDom() {
@@ -43,15 +42,16 @@ function createProjectDom() {             //this works for the form; should be r
     })
 }
 
-let selectedProject;
-
-function projectSelectionDom() {
-    document.querySelectorAll('.project-div').forEach(div =>{
-        div.addEventListener('click', e => {
-            selectedProject = ProjectManager.projectList[e.target.getAttribute('project-id')];
-            console.log(selectedProject);
+function deleteProjectDom() {
+    const allDeleteButtons = document.querySelectorAll('.delete-button');
+    allDeleteButtons.forEach(button => {
+        button.addEventListener('click', e=> {
+            const projectToRemove = ProjectManager.projectList[e.target.parentElement.getAttribute('project-id')];
+            ProjectManager.removeProject(projectToRemove);
+            updateProjectListDom();
         })
     })
 }
 
-export {updateProjectListDom, createProjectDom, selectedProject, projectSelectionDom};
+
+export {updateProjectListDom, createProjectDom, deleteProjectDom};
