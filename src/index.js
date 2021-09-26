@@ -1,5 +1,4 @@
-import { ProjectManager, Project, Task } from './projects';
-import { updateProjectListDom, createProjectDom, deleteProjectDom } from './dom-manipulator';
+import { updateProjectListDom, createProjectDom, updateProjectTasksListDom } from './dom-manipulator';
 
 const run = (() => {
     updateProjectListDom();

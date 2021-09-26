@@ -29,6 +29,7 @@ function updateProjectListDom() {
         document.querySelector('#project-container').appendChild(newProjectDiv);
     })
     deleteProjectDom();
+    updateProjectTasksListDom();
 }
 
 function createProjectDom() {             //this works for the form; should be remade into a popup form. Also don't forget to remove event listener;
@@ -56,5 +57,36 @@ function deleteProjectDom() {
     })
 }
 
+function updateProjectTasksListDom() {  
+    const allShowTaskButtons = document.querySelectorAll('.show-tasks-button');
+    allShowTaskButtons.forEach(button => {
+        document.querySelector('#task-container').innerHTML = '';
+        button.addEventListener('click', e => {
+            const selectedTaskList = ProjectManager.projectList[e.target.parentElement.getAttribute('project-id')].taskList;
+            selectedTaskList.forEach((element, index) => {
+                const newTaskDiv = document.createElement('div');
+                const newTaskTitle = document.createElement('p');
+                const newTaskDesc = document.createElement('p');
+                const newTaskDueDate = document.createElement('p');
+                const newTaskPriority = document.createElement('p');
+                const newTaskDeleteButton = document.createElement('button');
 
-export {updateProjectListDom, createProjectDom, deleteProjectDom};
+                newTaskDiv.classList.add('task-div');
+                newTaskDeleteButton.classList.add('delete-task-button');
+                newTaskDiv.setAttribute('task-id', index);
+
+                newTaskDeleteButton.textContent = 'Delete This Task';
+                newTaskTitle.textContent = `Title: ${element.title}`;
+                newTaskDesc.textContent = `Description: ${element.description}`;
+                newTaskDueDate.textContent = `Due Date: ${element.dueDate}`;
+                newTaskPriority.textContent = `Priority: ${element.priority}`;
+
+                newTaskDiv.append(newTaskTitle, newTaskDesc, newTaskDueDate, newTaskPriority, newTaskDeleteButton);
+                document.querySelector('#task-container').appendChild(newTaskDiv);
+
+            })
+        })
+    })
+}
+
+export {updateProjectListDom, createProjectDom, deleteProjectDom, updateProjectTasksListDom};

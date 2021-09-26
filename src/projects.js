@@ -45,5 +45,7 @@ const Task = (title, description, dueDate, priority) => {
 
 const defaultProject = Project('Buy PS5', 'Add 100 dollars to a save account each month', '11-11-2022', '1');
 ProjectManager.addProject(defaultProject);
+const defaulTask = Task ('Create Account', 'Create a saving accout', '11-11-2021', '1');
+defaultProject.addTask(defaulTask);
 
 export {ProjectManager, Project, Task, defaultProject};
