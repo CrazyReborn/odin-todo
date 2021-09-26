@@ -60,8 +60,8 @@ function deleteProjectDom() {
 function updateProjectTasksListDom() {  
     const allShowTaskButtons = document.querySelectorAll('.show-tasks-button');
     allShowTaskButtons.forEach(button => {
-        document.querySelector('#task-container').innerHTML = '';
         button.addEventListener('click', e => {
+            document.querySelector('#task-container').innerHTML = '';
             const selectedTaskList = ProjectManager.projectList[e.target.parentElement.getAttribute('project-id')].taskList;
             selectedTaskList.forEach((element, index) => {
                 const newTaskDiv = document.createElement('div');
