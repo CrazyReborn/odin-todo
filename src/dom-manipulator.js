@@ -5,27 +5,30 @@ function updateProjectListDom() {
     document.querySelector('#project-container').innerHTML = '';
     ProjectManager.projectList.forEach((object, index) => {
         const newProjectDiv = document.createElement('div');
-        newProjectDiv.classList.add('project-div');
         const newProjectTitle = document.createElement('p');
         const newProjectDesc = document.createElement('p');
         const newProjectDueDate = document.createElement('p');
         const newProjectPriority = document.createElement('p');
         const newProjectDeleteButton = document.createElement('button');
+        const newProjectShowTasksButton = document.createElement('button');
+
+        newProjectDiv.classList.add('project-div');
         newProjectDeleteButton.classList.add('delete-button');
-        newProjectDeleteButton.textContent = 'Delete This Project';
+        newProjectShowTasksButton.classList.add('show-tasks-button');
         newProjectDiv.setAttribute('project-id', index);
         console.log(ProjectManager.projectList);
 
-        newProjectTitle.textContent = object.title;
-        newProjectDesc.textContent = object.description;
-        newProjectDueDate.textContent = object.dueDate;
-        newProjectPriority.textContent = object.priority;
+        newProjectShowTasksButton.textContent = 'Show Related Tasks';
+        newProjectDeleteButton.textContent = 'Delete This Project';
+        newProjectTitle.textContent = `Title: ${object.title}`;
+        newProjectDesc.textContent = `Description: ${object.description}`;
+        newProjectDueDate.textContent = `Due Date: ${object.dueDate}`;
+        newProjectPriority.textContent = `Priority: ${object.priority}`;
 
-        newProjectDiv.append(newProjectTitle, newProjectDesc, newProjectDueDate, newProjectPriority, newProjectDeleteButton);
+        newProjectDiv.append(newProjectTitle, newProjectDesc, newProjectDueDate, newProjectPriority, newProjectDeleteButton, newProjectShowTasksButton);
         document.querySelector('#project-container').appendChild(newProjectDiv);
     })
     deleteProjectDom();
-    projectSelectionDom()
 }
 
 function createProjectDom() {             //this works for the form; should be remade into a popup form. Also don't forget to remove event listener;

@@ -5,22 +5,35 @@
         <meta charset="UTF-8"/>
         <style>
             #project-container {
-                border: 1px solid black;
+                border: 1px solid red;
+                width: 40vw;
+                margin: 10px 25px;
+            }
+            #task-container {
+                border: 1px solid blue;
+                width: 40vw;
+                margin: 10px 25px;
             }
             form {
                 display: flex;
                 flex-direction: column;
+                margin: 25px;
             }
             #radio {
                 flex-direction: row;
             }
             #main-container {
-                
+                display: flex;
+                flex-direction: row;
+            }
+            input {
+                max-width: 50vw;
             }
         </style>
     </head>
     <body>
-        <form>
+        <form id='project-submit-form'>
+            <h2>Add Project</h2>
             <label for='project-title'>Project Title</label>
             <input id='project-title-value' type='text' name='project-title'>
             <label for='project-description'>Project Description</label>
@@ -35,13 +48,14 @@
             <input type='radio' name='project-priority' id='high-priority' value='3'>
             <label for='high-priority'>High</label>
         </div>
-            <submit id='submit-project'>Submit</submit>
+            <input type='submit' id='submit-project'>
         
         </form>
         <div id='main-container'>
             <div id='project-container'>
             </div>
-            <div id='tasks-container'></div>
+            <div id='task-container'>
+            </div>
         </div>
         <script src='./main.js' defer></script>
     </body>

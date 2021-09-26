@@ -12,7 +12,7 @@ const ProjectManager = (() => {
         addProject,
         removeProject,
     };
-});
+})();
 
 const Project = (title, description, dueDate, priority) => {
     const taskList = [];
@@ -43,4 +43,7 @@ const Task = (title, description, dueDate, priority) => {
     };
 };
 
-export {ProjectManager, Project, Task};
+const defaultProject = Project('Buy PS5', 'Add 100 dollars to a save account each month', '11-11-2022', '1');
+ProjectManager.addProject(defaultProject);
+
+export {ProjectManager, Project, Task, defaultProject};
