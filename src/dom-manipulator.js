@@ -1,12 +1,12 @@
 import { Project, projectList } from './projects';
 import { deleteProjectDom } from './delete-project-dom';
 
-//create a function that will use foreach on the project list array every time we add/remove a prject on the page.
 
 function updateProjectListDom() {
     document.querySelector('#project-container').innerHTML = '';
     projectList.forEach((object, index) => {
         const newProjectDiv = document.createElement('div');
+        newProjectDiv.classList.add('project-div');
         const newProjectTitle = document.createElement('p');
         const newProjectDesc = document.createElement('p');
         const newProjectDueDate = document.createElement('p');
@@ -26,8 +26,8 @@ function updateProjectListDom() {
         document.querySelector('#project-container').appendChild(newProjectDiv);
     })
     deleteProjectDom();
+    projectSelectionDom()
 }
-
 
 function createProjectDom() {             //this works for the form; should be remade into a popup form. Also don't forget to remove event listener;
         document.querySelector('#submit-project').addEventListener('click', e=> {
@@ -43,5 +43,15 @@ function createProjectDom() {             //this works for the form; should be r
     })
 }
 
+let selectedProject;
 
-export {updateProjectListDom, createProjectDom};
+function projectSelectionDom() {
+    document.querySelectorAll('.project-div').forEach(div =>{
+        div.addEventListener('click', e => {
+            selectedProject = projectList[e.target.getAttribute('project-id')];
+            console.log(selectedProject);
+        })
+    })
+}
+
+export {updateProjectListDom, createProjectDom, selectedProject, projectSelectionDom};
