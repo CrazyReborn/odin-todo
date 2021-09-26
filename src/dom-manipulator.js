@@ -1,10 +1,10 @@
-import { Project, projectList } from './projects';
+import { ProjectManager, Project, Task } from './projects';
 import { deleteProjectDom } from './delete-project-dom';
 
 
 function updateProjectListDom() {
     document.querySelector('#project-container').innerHTML = '';
-    projectList.forEach((object, index) => {
+    ProjectManager.projectList.forEach((object, index) => {
         const newProjectDiv = document.createElement('div');
         newProjectDiv.classList.add('project-div');
         const newProjectTitle = document.createElement('p');
@@ -15,7 +15,7 @@ function updateProjectListDom() {
         newProjectDeleteButton.classList.add('delete-button');
         newProjectDeleteButton.textContent = 'Delete This Project';
         newProjectDiv.setAttribute('project-id', index);
-        console.log(projectList);
+        console.log(ProjectManager.projectList);
 
         newProjectTitle.textContent = object.title;
         newProjectDesc.textContent = object.description;
@@ -35,7 +35,7 @@ function createProjectDom() {             //this works for the form; should be r
                                    document.querySelector('#project-discription-value').value, 
                                    document.querySelector('#project-due-date-value').value, 
                                    document.querySelector('input[name="project-priority"]:checked').value);
-            newProject.add();
+            ProjectManager.addProject(newProject);
 
         
         updateProjectListDom();
@@ -48,7 +48,7 @@ let selectedProject;
 function projectSelectionDom() {
     document.querySelectorAll('.project-div').forEach(div =>{
         div.addEventListener('click', e => {
-            selectedProject = projectList[e.target.getAttribute('project-id')];
+            selectedProject = ProjectManager.projectList[e.target.getAttribute('project-id')];
             console.log(selectedProject);
         })
     })

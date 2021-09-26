@@ -1,6 +1,3 @@
-import { defTask } from "./tasks";
-
-
 const ProjectManager = (() => {
     const projectList = [];
     const addProject = (project) => {
@@ -26,7 +23,6 @@ const Project = (title, description, dueDate, priority) => {
         let index = taskList.indexOf(task);
         taskList.splice(index, 1);
     };
-
     return { 
         title, 
         description, 
@@ -47,27 +43,4 @@ const Task = (title, description, dueDate, priority) => {
     };
 };
 
-
-/*
-const projectList = [];
-
-const Project = (title, description, dueDate, priority) => {
-    function add(){
-        projectList.push(this);
-    };
-    function remove() {
-        let index = projectList.indexOf(this);
-        projectList.splice(index, 1);
-    };
-    const taskList = [];
-    function addToTaskList(task) {
-        taskList.push(task);
-    }
-    return { title, description, dueDate, priority, add, remove , taskList, addToTaskList};
-};
-
-const defPro = Project('aaaa', 'bbbbb', 'ccccc', '3');
-defPro.add();
-
-export { Project, projectList, defPro }
-*/
+export {ProjectManager, Project, Task};
