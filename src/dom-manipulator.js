@@ -1,5 +1,9 @@
 import { ProjectManager, Project, Task } from './projects';
 
+const selectionTracker = (() => {
+    const index = 0;
+    return { index };
+})();
 
 function updateProjectListDom() {
     document.querySelector('#project-container').innerHTML = '';
@@ -27,9 +31,11 @@ function updateProjectListDom() {
 
         newProjectDiv.append(newProjectTitle, newProjectDesc, newProjectDueDate, newProjectPriority, newProjectDeleteButton, newProjectShowTasksButton);
         document.querySelector('#project-container').appendChild(newProjectDiv);
+
     })
     deleteProjectDom();
-    updateProjectTasksListDom();
+    showTasks();
+    addNewProjectButton();
 }
 
 function createProjectDom() {             //this works for the form; should be remade into a popup form. Also don't forget to remove event listener;
@@ -44,7 +50,21 @@ function createProjectDom() {             //this works for the form; should be r
         updateProjectListDom();
         e.preventDefault();
     })
-}
+};
+
+function createTaskDom() {
+    document.querySelector('#submit-task').addEventListener('click', e=> {
+        const newTask = Task(document.querySelector('#task-title-value').value, 
+                               document.querySelector('#task-discription-value').value, 
+                               document.querySelector('#task-due-date-value').value, 
+                               document.querySelector('input[name="task-priority"]:checked').value);
+        
+        ProjectManager.projectList[selectionTracker.index].addTask(newTask); 
+        updateTasksDom();
+        e.preventDefault();
+})
+};
+
 
 function deleteProjectDom() {
     const allDeleteButtons = document.querySelectorAll('.delete-button');
@@ -55,14 +75,53 @@ function deleteProjectDom() {
             updateProjectListDom();
         })
     })
-}
+};
 
-function updateProjectTasksListDom() {  
+function addNewProjectButton() {
+    const theButton = document.createElement('button');
+    theButton.setAttribute('id', 'add-project-button');
+    theButton.textContent = 'Click To Add New Project';
+    document.querySelector('#project-container').appendChild(theButton);
+};
+
+function updateTasksDom() {
+    document.querySelector('#task-container').innerHTML = ''; 
+    const selectedProject = ProjectManager.projectList[selectionTracker.index];
+    selectedProject.taskList.forEach((element, index) => {
+        const newTaskDiv = document.createElement('div');
+        const newTaskTitle = document.createElement('p');
+        const newTaskDesc = document.createElement('p');
+        const newTaskDueDate = document.createElement('p');
+        const newTaskPriority = document.createElement('p');
+        const newTaskDeleteButton = document.createElement('button');
+
+        newTaskDiv.classList.add('task-div');
+        newTaskDeleteButton.classList.add('delete-task-button');
+        newTaskDiv.setAttribute('task-id', index);
+
+        newTaskDeleteButton.textContent = 'Delete This Task';
+        newTaskTitle.textContent = `Title: ${element.title}`;
+        newTaskDesc.textContent = `Description: ${element.description}`;
+        newTaskDueDate.textContent = `Due Date: ${element.dueDate}`;
+        newTaskPriority.textContent = `Priority: ${element.priority}`;
+
+        newTaskDiv.append(newTaskTitle, newTaskDesc, newTaskDueDate, newTaskPriority, newTaskDeleteButton);
+        document.querySelector('#task-container').appendChild(newTaskDiv);
+
+    })
+};
+
+
+function showTasks() {  
     const allShowTaskButtons = document.querySelectorAll('.show-tasks-button');
     allShowTaskButtons.forEach(button => {
         button.addEventListener('click', e => {
-            document.querySelector('#task-container').innerHTML = '';
-            const selectedTaskList = ProjectManager.projectList[e.target.parentElement.getAttribute('project-id')].taskList;
+            document.querySelector('#task-container').innerHTML = '';                       ///delete the divs content
+            const selectedTaskList = ProjectManager.projectList[e.target.parentElement.getAttribute('project-id')].taskList;    ///get the task list to render
+            selectionTracker.index = e.target.parentElement.getAttribute('project-id');                     
+            console.log(selectionTracker.index);
+
+
             selectedTaskList.forEach((element, index) => {
                 const newTaskDiv = document.createElement('div');
                 const newTaskTitle = document.createElement('p');
@@ -89,4 +148,4 @@ function updateProjectTasksListDom() {
     })
 }
 
-export {updateProjectListDom, createProjectDom, deleteProjectDom, updateProjectTasksListDom};
+export {updateProjectListDom, createProjectDom, deleteProjectDom, showTasks, updateTasksDom, selectionTracker, createTaskDom};

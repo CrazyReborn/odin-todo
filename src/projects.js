@@ -7,19 +7,23 @@ const ProjectManager = (() => {
         const projectIndex = projectList.indexOf(project);
         projectList.splice(projectIndex, 1);
     }
+    const findProjectIndex = (project) => {
+        projectList.indexOf(project);
+    }
     return {
         projectList,
         addProject,
         removeProject,
+        findProjectIndex
     };
 })();
 
 const Project = (title, description, dueDate, priority) => {
     const taskList = [];
-    function addTask(task){
+    const addTask = (task) => {
         taskList.push(task);
     };
-    function removeTask(task) {
+    const removeTask = (task) => {
         let index = taskList.indexOf(task);
         taskList.splice(index, 1);
     };

@@ -51,6 +51,25 @@
             <input type='submit' id='submit-project'>
         
         </form>
+        <form id='task-submit-form'>
+            <h2>Add Task</h2>
+            <label for='task-title'>Project Title</label>
+            <input id='task-title-value' type='text' name='task-title'>
+            <label for='task-description'>Project Description</label>
+            <input id='task-discription-value' type='text' name='task-description'>
+            <label for='task-due-date'>Project Due Date</label>
+            <input id='task-due-date-value' type='date' name='task-due-date'>
+            <div id='radio'>Project Priority
+            <input type='radio' name='task-priority' id='low-priority' value='1'>
+            <label for='low-priority'>Low</label>
+            <input type='radio' name='task-priority' id='medium-priority' value='2'>
+            <label for='medium-priority'>Medium</label>
+            <input type='radio' name='task-priority' id='high-priority' value='3'>
+            <label for='high-priority'>High</label>
+        </div>
+            <input type='submit' id='submit-task'>
+        
+        </form>
         <div id='main-container'>
             <div id='project-container'>
             </div>

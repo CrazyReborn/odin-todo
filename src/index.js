@@ -1,6 +1,7 @@
-import { updateProjectListDom, createProjectDom, updateProjectTasksListDom } from './dom-manipulator';
+import { updateProjectListDom, createProjectDom, createTaskDom } from './dom-manipulator';
 
 const run = (() => {
     updateProjectListDom();
-    createProjectDom();
+    createProjectDom(); // use forms
+    createTaskDom();    //use forms
 })();
