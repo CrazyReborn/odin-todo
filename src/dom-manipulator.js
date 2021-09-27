@@ -77,6 +77,18 @@ function deleteProjectDom() {
     })
 };
 
+function deleteTaskDom() {
+    const allDeleteButtons = document.querySelectorAll('.delete-task-button');
+    allDeleteButtons.forEach(button => {
+        button.addEventListener('click', e=> {
+            const projectToRemoveFrom = ProjectManager.projectList[selectionTracker.index];
+            const taskToRemove = ProjectManager.projectList[selectionTracker.index].taskList[e.target.parentElement.getAttribute('task-id')];
+            projectToRemoveFrom.removeTask(taskToRemove);
+            updateTasksDom();
+        })
+    })
+}
+
 function addNewProjectButton() {
     const theButton = document.createElement('button');
     theButton.setAttribute('id', 'add-project-button');
@@ -109,6 +121,7 @@ function updateTasksDom() {
         document.querySelector('#task-container').appendChild(newTaskDiv);
 
     })
+    deleteTaskDom();
 };
 
 
