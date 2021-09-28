@@ -1,4 +1,5 @@
 import { ProjectManager, Project, Task } from './projects';
+import { checkTimeLeft } from './check-time-left';
 
 const selectionTracker = (() => {
     const index = 0;
@@ -26,7 +27,7 @@ function updateProjectListDom() {
         newProjectDeleteButton.textContent = 'Delete This Project';
         newProjectTitle.textContent = `Title: ${object.title}`;
         newProjectDesc.textContent = `Description: ${object.description}`;
-        newProjectDueDate.textContent = `Due Date: ${object.dueDate}`;
+        newProjectDueDate.textContent = `Due Date: ${object.dueDate}. You have ${checkTimeLeft.project(object)} left.`;
         newProjectPriority.textContent = `Priority: ${object.priority}`;
 
         newProjectDiv.append(newProjectTitle, newProjectDesc, newProjectDueDate, newProjectPriority, newProjectDeleteButton, newProjectShowTasksButton);
@@ -64,7 +65,6 @@ function createTaskDom() {
         e.preventDefault();
 })
 };
-
 
 function deleteProjectDom() {
     const allDeleteButtons = document.querySelectorAll('.delete-button');
@@ -114,7 +114,7 @@ function updateTasksDom() {
         newTaskDeleteButton.textContent = 'Delete This Task';
         newTaskTitle.textContent = `Title: ${element.title}`;
         newTaskDesc.textContent = `Description: ${element.description}`;
-        newTaskDueDate.textContent = `Due Date: ${element.dueDate}`;
+        newTaskDueDate.textContent = `Due Date: ${element.dueDate}. You have ${checkTimeLeft.task(element)} left.`;
         newTaskPriority.textContent = `Priority: ${element.priority}`;
 
         newTaskDiv.append(newTaskTitle, newTaskDesc, newTaskDueDate, newTaskPriority, newTaskDeleteButton);
@@ -150,7 +150,7 @@ function showTasks() {
                 newTaskDeleteButton.textContent = 'Delete This Task';
                 newTaskTitle.textContent = `Title: ${element.title}`;
                 newTaskDesc.textContent = `Description: ${element.description}`;
-                newTaskDueDate.textContent = `Due Date: ${element.dueDate}`;
+                newTaskDueDate.textContent = `Due Date: ${element.dueDate}.You have ${checkTimeLeft.task(element)} left.`;
                 newTaskPriority.textContent = `Priority: ${element.priority}`;
 
                 newTaskDiv.append(newTaskTitle, newTaskDesc, newTaskDueDate, newTaskPriority, newTaskDeleteButton);
