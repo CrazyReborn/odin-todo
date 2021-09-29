@@ -2,7 +2,7 @@ import { formatDistanceToNow, toDate, parseISO } from "date-fns"
 
 
 
-const checkTimeLeft = (()=> {
+const checkTimeLeft = (() => {
     const task = (taskObject) => {
         const dueDate = toDate(parseISO(taskObject.dueDate));
         return formatDistanceToNow(dueDate);
@@ -17,4 +17,4 @@ const checkTimeLeft = (()=> {
     }
 })();
 
-export {checkTimeLeft};
+export { checkTimeLeft };
