@@ -1,24 +1,20 @@
 import { ProjectManager, Project, Task } from "./projects";
 import { checkTimeLeft } from "./check-time-left";
+import { updateProjectListDom } from "./dom-manipulator";
 
 
 const storage = (() => {
-    const projects = [];
+    let projects = [];
     const update = () => {
-        projects.splice(0, projects.length);
-        ProjectManager.projectList.forEach(project => {
-            projects.push(JSON.stringify(project));
-        })
-        localStorage.setItem(`projects`, `${projects}`);
-        console.log(`projects array: ${projects}`);
+        localStorage.clear;
+        localStorage.setItem(`projects`, JSON.stringify(ProjectManager.projectList));
     }
-
-    /*
     const load = () => {
-        const a = localStorage.getItem(`projects`);
-        projects.push = JSON.parse(a);
+        projects = JSON.parse(localStorage.getItem(`projects`));
+        projects.forEach(element => {
+            ProjectManager.addProject(element);
+        })
         }
-        */
     return {
         projects,
         update,
@@ -34,6 +30,7 @@ const checkStorage = () => {
         defaultProject.addTask(defaulTask);
     }
     else {
+        storage.load();
     }
 };
 

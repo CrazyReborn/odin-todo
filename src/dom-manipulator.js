@@ -37,7 +37,6 @@ function updateProjectListDom() {
     deleteProjectDom();
     showTasks();
     addNewProjectButton();
-    storage.update();
 }
 
 function createProjectDom() {             //this works for the form; should be remade into a popup form. Also don't forget to remove event listener;
@@ -105,6 +104,7 @@ function addNewProjectButton() {
 function updateTasksDom() {
     document.querySelector('#task-container').innerHTML = '';
     const selectedProject = ProjectManager.projectList[selectionTracker.index];
+    if(selectedProject.taskList) {
     selectedProject.taskList.forEach((element, index) => {
         const newTaskDiv = document.createElement('div');
         const newTaskTitle = document.createElement('p');
@@ -129,6 +129,7 @@ function updateTasksDom() {
     })
     deleteTaskDom();
     storage.update();
+}
 };
 
 
@@ -156,7 +157,7 @@ function showTasks() {
                 newTaskDeleteButton.textContent = 'Delete This Task';
                 newTaskTitle.textContent = `Title: ${element.title}`;
                 newTaskDesc.textContent = `Description: ${element.description}`;
-                newTaskDueDate.textContent = `Due Date: ${element.dueDate}.You have ${checkTimeLeft.task(element)} left.`;
+                newTaskDueDate.textContent = `Due Date: ${element.dueDate}. You have ${checkTimeLeft.task(element)} left.`;
                 newTaskPriority.textContent = `Priority: ${element.priority}`;
 
                 newTaskDiv.append(newTaskTitle, newTaskDesc, newTaskDueDate, newTaskPriority, newTaskDeleteButton);
