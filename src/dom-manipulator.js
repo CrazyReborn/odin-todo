@@ -50,6 +50,7 @@ function createProjectDom() {             //this works for the form; should be r
 
 
         updateProjectListDom();
+        document.querySelector('#task-container').innerHTML = '';
         storage.update();
         e.preventDefault();
     })
