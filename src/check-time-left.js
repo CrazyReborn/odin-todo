@@ -1,20 +1,18 @@
-import { formatDistanceToNow, toDate, parseISO } from "date-fns"
-
-
+import { formatDistanceToNow, parseISO } from 'date-fns';
 
 const checkTimeLeft = (() => {
-    const task = (taskObject) => {
-        const dueDate = taskObject.dueDate;
-        return formatDistanceToNow(parseISO(dueDate));
-    }
-    const project = (projectObject) => {
-        const dueDate = projectObject.dueDate;
-        return formatDistanceToNow(parseISO(dueDate));
-    }
-    return {
-        task,
-        project,
-    }
+  const task = (taskObject) => {
+    const { dueDate } = taskObject;
+    return formatDistanceToNow(parseISO(dueDate));
+  };
+  const project = (projectObject) => {
+    const { dueDate } = projectObject;
+    return formatDistanceToNow(parseISO(dueDate));
+  };
+  return {
+    task,
+    project,
+  };
 })();
 
 export { checkTimeLeft };
