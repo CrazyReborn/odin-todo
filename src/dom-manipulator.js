@@ -148,6 +148,7 @@ function addNewTaskButton() {
     newTaskButton.addEventListener('click', e=> {
         document.querySelector('#task-submit-form').style.display = 'flex';
     })
+    cancelTaskSubmition();
 }
 
 function showTasks() {
@@ -189,6 +190,13 @@ function showTasks() {
 function cancelProjectSubmition() {
     document.querySelector('#cancel-project-submition').addEventListener('click', e => {
         document.querySelector('#project-submit-form').style.display = 'none';
+        e.preventDefault();
+    })
+}
+
+function cancelTaskSubmition() {
+    document.querySelector('#cancel-task-submition').addEventListener('click', e => {
+        document.querySelector('#task-submit-form').style.display = 'none';
         e.preventDefault();
     })
 }
