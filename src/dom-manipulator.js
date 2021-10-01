@@ -50,7 +50,6 @@ function createProjectDom() {             //this works for the form; should be r
 
 
         updateProjectListDom();
-        updateTasksDom();
         storage.update();
         e.preventDefault();
     })
@@ -179,6 +178,7 @@ function showTasks() {
                 document.querySelector('#task-container').appendChild(newTaskDiv);
             })
             addNewTaskButton();
+            deleteTaskDom();
         })
     })
 }

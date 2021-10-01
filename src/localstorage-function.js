@@ -13,12 +13,13 @@ const storage = (() => {
         projects = JSON.parse(localStorage.getItem('projects'));
         projects.forEach(project => {
             const newProject = project;
+            console.log(newProject.taskList);
             newProject.addTask = (task) => {
-                this.taskList.push(task);
+                newProject.taskList.push(task);
             };
             newProject.removeTask = (task) => {
-                let index = taskList.indexOf(task);
-                this.taskList.splice(index, 1);
+                let index = newProject.taskList.indexOf(task);
+                newProject.taskList.splice(index, 1);
             };
             ProjectManager.addProject(newProject);
         })
