@@ -47,10 +47,10 @@ function createProjectDom() {             //this works for the form; should be r
             document.querySelector('input[name="project-priority"]:checked').value);
         ProjectManager.addProject(newProject);
         document.querySelector('#project-submit-form').style.display = 'none';
-
-
         updateProjectListDom();
+        updateTasksDom();
         document.querySelector('#task-container').innerHTML = '';
+        addNewTaskButton();
         storage.update();
         e.preventDefault();
     })
