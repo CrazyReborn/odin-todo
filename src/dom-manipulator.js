@@ -77,9 +77,10 @@ function deleteProjectDom() {
         button.addEventListener('click', e => {
             const projectToRemove = ProjectManager.projectList[e.target.parentElement.getAttribute('project-id')];
             ProjectManager.removeProject(projectToRemove);
+            storage.update();
             updateProjectListDom();
             updateTasksDom();
-            storage.update();
+            
         })
     })
 };
@@ -105,6 +106,7 @@ function addNewProjectButton() {
     theButton.addEventListener('click', e => {
         document.querySelector('#project-submit-form').style.display = 'flex';
     })
+    cancelProjectSubmition();
 };
 
 function updateTasksDom() {
@@ -181,6 +183,13 @@ function showTasks() {
             addNewTaskButton();
             deleteTaskDom();
         })
+    })
+}
+
+function cancelProjectSubmition() {
+    document.querySelector('#cancel-project-submition').addEventListener('click', e => {
+        document.querySelector('#project-submit-form').style.display = 'none';
+        e.preventDefault();
     })
 }
 

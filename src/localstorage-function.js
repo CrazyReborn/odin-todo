@@ -32,7 +32,7 @@ const storage = (() => {
 })();
 
 const checkStorage = () => {
-    if (localStorage.length == 0) {
+    if (ProjectManager.projectList.length == 0) {
         const defaultProject = Project('Buy PS5', 'Add 100 dollars to a save account each month', '2022-11-11', '1');
         ProjectManager.addProject(defaultProject);
         const defaulTask = Task('Create Account', 'Create a saving accout', '2021-11-11', '1');
