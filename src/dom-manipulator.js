@@ -201,4 +201,33 @@ function cancelTaskSubmition() {
     })
 }
 
-export { updateProjectListDom, createProjectDom, deleteProjectDom, showTasks, updateTasksDom, selectionTracker, createTaskDom };
+function changeShowStatusProjects() {
+    let status = 'show';
+    document.querySelector('#show-hide-projects').addEventListener('click', e=> {
+        if (status == 'show') {
+            document.querySelector('#project-container').style.display = 'none';
+            status = 'hide';
+        }
+        else {
+            document.querySelector('#project-container').style.display = 'flex';
+            status = 'show';
+        }
+    })
+}
+
+function changeShowStatusTasks() {
+    let status = 'show';
+    document.querySelector('#show-hide-tasks').addEventListener('click', e=> {
+        if (status == 'show') {
+            document.querySelector('#task-container').style.display = 'none';
+            status = 'hide';
+        }
+        else {
+            document.querySelector('#task-container').style.display = 'flex';
+            status = 'show';
+        }
+    })
+}
+
+export { updateProjectListDom, createProjectDom, deleteProjectDom, showTasks, updateTasksDom, selectionTracker, createTaskDom, changeShowStatusProjects, 
+    changeShowStatusTasks};

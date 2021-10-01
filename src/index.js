@@ -1,8 +1,6 @@
 import './style.css';
-import { updateProjectListDom, createProjectDom, updateTasksDom, createTaskDom, selectionTracker } from './dom-manipulator';
-import { checkStorage, storage } from './localstorage-function';
-import { checkTimeLeft } from './check-time-left';
-import { toDate, parseISO, formatDistanceToNow } from 'date-fns';
+import { updateProjectListDom, createProjectDom, updateTasksDom, createTaskDom, selectionTracker, changeShowStatusProjects, changeShowStatusTasks } from './dom-manipulator';
+import { checkStorage, } from './localstorage-function';
 
 const run = (() => {
     checkStorage();
@@ -10,5 +8,6 @@ const run = (() => {
     createProjectDom();
     updateTasksDom();
     createTaskDom();
-    console.log(selectionTracker);
+    changeShowStatusProjects();
+    changeShowStatusTasks();
 })();
