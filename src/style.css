@@ -9,11 +9,13 @@
     align-items: center;
 }
 
+html, body {
+    height: 100%;
+}
 
 #radio {
     flex-direction: row;
 }
-
 
 #task-submit-form {
     display: none;
@@ -24,4 +26,46 @@
     background-color: rgba(228, 123, 249, 0.7);
     justify-content: center;
     align-items: center;
+}
+#add-project-button {
+    margin-top: 5%;
+    align-self: center;
+    height: 10%;
+    width: auto;
+
+}
+
+#add-task-button {
+    margin-top: 5%;
+    align-self: center;
+    height: 10%;
+    width: auto;
+}
+
+h1 {
+    text-align: center;
+}
+#main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#project-container {
+    padding:2%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: slateblue;
+    color: white;
+    width: 43%;
+}
+
+#task-container {
+    display: flex;
+    padding: 2%;
+    flex-direction: column;
+    height: 100%;
+    width: 43%;
 }
