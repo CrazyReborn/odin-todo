@@ -46,6 +46,7 @@ function createProjectDom() {             //this works for the form; should be r
             document.querySelector('#project-due-date-value').value,
             document.querySelector('input[name="project-priority"]:checked').value);
         ProjectManager.addProject(newProject);
+        document.querySelector('#project-submit-form').style.display = 'none';
 
 
         updateProjectListDom();
@@ -99,6 +100,9 @@ function addNewProjectButton() {
     theButton.setAttribute('id', 'add-project-button');
     theButton.textContent = 'Click To Add New Project';
     document.querySelector('#project-container').appendChild(theButton);
+    theButton.addEventListener('click', e => {
+        document.querySelector('#project-submit-form').style.display = 'flex';
+    })
 };
 
 function updateTasksDom() {

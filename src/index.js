@@ -1,3 +1,4 @@
+import './style.css';
 import { updateProjectListDom, createProjectDom, updateTasksDom, createTaskDom } from './dom-manipulator';
 import { checkStorage, storage } from './localstorage-function';
 import { checkTimeLeft } from './check-time-left';
