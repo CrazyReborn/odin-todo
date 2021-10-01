@@ -27,7 +27,7 @@ function updateProjectListDom() {
         newProjectDeleteButton.textContent = 'Delete This Project';
         newProjectTitle.textContent = `Title: ${object.title}`;
         newProjectDesc.textContent = `Description: ${object.description}`;
-        newProjectDueDate.textContent = `Due Date: ${object.dueDate}. You have ${checkTimeLeft.project(object)} left.`;
+        newProjectDueDate.textContent = `Due Date: ${object.dueDate}.` //You have ${checkTimeLeft.project(object)} left.`;
         newProjectPriority.textContent = `Priority: ${object.priority}`;
 
         newProjectDiv.append(newProjectTitle, newProjectDesc, newProjectDueDate, newProjectPriority, newProjectDeleteButton, newProjectShowTasksButton);
@@ -50,6 +50,7 @@ function createProjectDom() {             //this works for the form; should be r
 
 
         updateProjectListDom();
+        updateTasksDom();
         storage.update();
         e.preventDefault();
     })
@@ -61,11 +62,12 @@ function createTaskDom() {
             document.querySelector('#task-discription-value').value,
             document.querySelector('#task-due-date-value').value,
             document.querySelector('input[name="task-priority"]:checked').value);
-
         ProjectManager.projectList[selectionTracker.index].addTask(newTask);
         updateTasksDom();
+        document.querySelector('#task-submit-form').style.display = 'none';
         storage.update();
         e.preventDefault();
+        
     })
 };
 
@@ -124,7 +126,7 @@ function updateTasksDom() {
         newTaskDeleteButton.textContent = 'Delete This Task';
         newTaskTitle.textContent = `Title: ${element.title}`;
         newTaskDesc.textContent = `Description: ${element.description}`;
-        newTaskDueDate.textContent = `Due Date: ${element.dueDate}. You have ${checkTimeLeft.task(element)} left.`;
+        newTaskDueDate.textContent = `Due Date: ${element.dueDate}.` // You have ${checkTimeLeft.task(element)} left.`;
         newTaskPriority.textContent = `Priority: ${element.priority}`;
 
         newTaskDiv.append(newTaskTitle, newTaskDesc, newTaskDueDate, newTaskPriority, newTaskDeleteButton);
@@ -132,10 +134,19 @@ function updateTasksDom() {
 
     })
     deleteTaskDom();
-    storage.update();
+    addNewTaskButton();
 }
 };
 
+function addNewTaskButton() {
+    const newTaskButton = document.createElement('button');
+    newTaskButton.setAttribute('id', 'add-task-button');
+    newTaskButton.textContent = 'Click To Add New Task';
+    document.querySelector('#task-container').appendChild(newTaskButton);
+    newTaskButton.addEventListener('click', e=> {
+        document.querySelector('#task-submit-form').style.display = 'flex';
+    })
+}
 
 function showTasks() {
     const allShowTaskButtons = document.querySelectorAll('.show-tasks-button');
@@ -161,13 +172,13 @@ function showTasks() {
                 newTaskDeleteButton.textContent = 'Delete This Task';
                 newTaskTitle.textContent = `Title: ${element.title}`;
                 newTaskDesc.textContent = `Description: ${element.description}`;
-                newTaskDueDate.textContent = `Due Date: ${element.dueDate}. You have ${checkTimeLeft.task(element)} left.`;
+                newTaskDueDate.textContent = `Due Date: ${element.dueDate}.` // You have ${checkTimeLeft.task(element)} left.`;
                 newTaskPriority.textContent = `Priority: ${element.priority}`;
 
                 newTaskDiv.append(newTaskTitle, newTaskDesc, newTaskDueDate, newTaskPriority, newTaskDeleteButton);
                 document.querySelector('#task-container').appendChild(newTaskDiv);
-
             })
+            addNewTaskButton();
         })
     })
 }

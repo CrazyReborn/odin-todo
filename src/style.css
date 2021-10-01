@@ -16,5 +16,11 @@
 
 #task-submit-form {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background-color: rgba(228, 123, 249, 0.7);
+    justify-content: center;
+    align-items: center;
 }
-

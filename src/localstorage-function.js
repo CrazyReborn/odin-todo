@@ -7,12 +7,20 @@ const storage = (() => {
     let projects = [];
     const update = () => {
         localStorage.clear;
-        localStorage.setItem(`projects`, JSON.stringify(ProjectManager.projectList));
+        localStorage.setItem('projects', JSON.stringify(ProjectManager.projectList));
     }
     const load = () => {
-        projects = JSON.parse(localStorage.getItem(`projects`));
-        projects.forEach(element => {
-            ProjectManager.addProject(element);
+        projects = JSON.parse(localStorage.getItem('projects'));
+        projects.forEach(project => {
+            const newProject = project;
+            newProject.addTask = (task) => {
+                this.taskList.push(task);
+            };
+            newProject.removeTask = (task) => {
+                let index = taskList.indexOf(task);
+                this.taskList.splice(index, 1);
+            };
+            ProjectManager.addProject(newProject);
         })
         }
     return {
