@@ -10,6 +10,7 @@ const storage = (() => {
   };
   const load = () => {
     projects = JSON.parse(localStorage.getItem('projects'));
+    if (projects === null) { return; }
     projects.forEach((project) => {
       const newProject = project;
       console.log(newProject.taskList);
